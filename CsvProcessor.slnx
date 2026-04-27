@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="CsvProcessor.Api/CsvProcessor.Api.csproj" />
+    <Project Path="CsvProcessor.Lambda/CsvProcessor.Lambda.csproj" />
+    <Project Path="CsvProcessor.Shared/CsvProcessor.Shared.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,6 @@
+@CsvProcessor.Api_HostAddress = http://localhost:5110
+
+GET {{CsvProcessor.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
