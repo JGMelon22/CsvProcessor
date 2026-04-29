@@ -1,6 +1,7 @@
 using Amazon.Runtime;
 using Amazon.S3;
 using Amazon.SQS;
+using CsvProcessor.Api.Extensions;
 using CsvProcessor.Shared.Settings;
 using Scalar.AspNetCore;
 
@@ -11,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddServices();
 
 # region [AWS and MongoDb - Typed Configurations]
 

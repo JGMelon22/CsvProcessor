@@ -4,5 +4,5 @@ public record CsvUploadPayload(
     string S3Key,
     string FileName,
     DateTime UploadedAt,
-    int TotalRegisters
+    int TotalRecords
 );
