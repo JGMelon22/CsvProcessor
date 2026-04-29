@@ -3,9 +3,9 @@ using CsvProcessor.Shared.Models;
 
 namespace CsvProcessor.Shared.Mappings;
 
-public sealed class ProductMappings : ClassMap<Product>
+public sealed class ProductMap : ClassMap<Product>
 {
-    public ProductMappings()
+    public ProductMap()
     {
         Map(p => p.Id).Name("Id");
         Map(p => p.Name).Name("Name");
