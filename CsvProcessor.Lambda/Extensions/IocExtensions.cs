@@ -29,16 +29,4 @@ public static class IocExtensions
             );
         });
     }
-
-    public static void AddMongoDb(this IServiceCollection services, IConfiguration configuration)
-    {
-        // services.AddSingleton<IMongoClient>(sp =>
-        // {
-        //     var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-        //     return new MongoClient(settings.ConnectionString);
-        // });
-
-        services.Configure<MongoDbSettings>(
-            configuration.GetSection(MongoDbSettings.SectionName));
-    }
 }

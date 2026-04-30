@@ -22,9 +22,6 @@ public class MongoDbService : IMongoDbService
             mongoDbSettings.Value.CollectionName
         );
     }
-    // private readonly IMongoCollection<Product> _collection = mongoClient
-    //     .GetDatabase(options.Value.DatabaseName)
-    //     .GetCollection<Product>(options.Value.CollectionName);
 
     public async Task InsertManyAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default)
     {
