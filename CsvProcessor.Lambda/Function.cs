@@ -13,9 +13,9 @@ namespace CsvProcessor.Lambda;
 
 public class Function
 {
-    private readonly IS3DownloadService _s3DownloadService;
-    private readonly ICsvReaderService _csvReaderService;
-    private readonly IMongoDbService _mongoDbService;
+    private readonly IS3DownloadService _s3DownloadService = null!;
+    private readonly ICsvReaderService _csvReaderService = null!;
+    private readonly IMongoDbService _mongoDbService = null!;
 
     public Function()
     {

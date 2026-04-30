@@ -24,8 +24,8 @@ public class Startup
         services.Configure<S3Settings>(
             configuration.GetSection(S3Settings.SectionName));
 
-        services.AddAwsServices();
-        services.AddMongoDb();
+        services.AddS3Service();
+        // services.AddMongoDb(configuration);
         services.AddLambdaServices();
     }
 }

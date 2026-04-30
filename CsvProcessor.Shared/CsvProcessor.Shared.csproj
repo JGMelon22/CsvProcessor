@@ -10,4 +10,10 @@
       <PackageReference Include="CsvHelper" Version="33.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="MongoDB.Bson">
+        <HintPath>..\..\..\..\..\.nuget\packages\mongodb.bson\3.8.0\lib\net6.0\MongoDB.Bson.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
