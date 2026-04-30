@@ -8,4 +8,5 @@ public class AwsSettings
     public string? AuthenticationRegion { get; set; }
     public string? AccessKey { get; set; }
     public string? SecretKey { get; set; }
+    public bool ForceStylePath { get; set; }
 }
