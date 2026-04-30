@@ -1,10 +1,10 @@
-using Amazon.S3.Model;
 using CsvProcessor.Api.Services.Interfaces;
 using CsvProcessor.Shared.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CsvProcessor.Api.Controllers;
 
+[ApiController]
 [Route("api/[controller]")]
 public class CsvController(
     IS3Service s3Service,

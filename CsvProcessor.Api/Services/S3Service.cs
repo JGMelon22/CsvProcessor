@@ -20,7 +20,7 @@ public class S3Service(IAmazonS3 s3Client, IOptions<S3Settings> options) : IS3Se
             BucketName = _s3Client.BucketName,
             Key = s3Key,
             InputStream = stream,
-            ContentBody = contentType
+            ContentType = contentType
         };
 
         await s3Client.PutObjectAsync(request, cancellationToken);

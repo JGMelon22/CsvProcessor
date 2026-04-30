@@ -4,5 +4,5 @@ namespace CsvProcessor.Lambda.Services.Interfaces;
 
 public interface IMongoDbService
 {
-    Task InsertMany(IEnumerable<Product> products, CancellationToken cancellationToken = default);
+    Task InsertManyAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default);
 }

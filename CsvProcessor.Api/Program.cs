@@ -15,18 +15,21 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddServices();
 
-# region [AWS and MongoDb - Typed Configurations]
+# region [AWS and MongoDb - Options Configurations]
 
-var awsConfig = builder.Configuration.GetSection(AwsSettings.SectionName).Get<AwsSettings>()!;
-var sqsConfig = builder.Configuration.GetSection(SqsSettings.SectionName).Get<SqsSettings>()!;
-var mongoDbConfig = builder.Configuration.GetSection(MongoDbSettings.SectionName).Get<MongoDbSettings>()!;
-var s3Config = builder.Configuration.GetSection(S3Settings.SectionName).Get<S3Settings>()!;
+builder.Services.Configure<AwsSettings>(
+    builder.Configuration.GetSection(AwsSettings.SectionName));
+builder.Services.Configure<SqsSettings>(
+    builder.Configuration.GetSection(SqsSettings.SectionName));
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection(MongoDbSettings.SectionName));
+builder.Services.Configure<S3Settings>(
+    builder.Configuration.GetSection(S3Settings.SectionName));
 
-builder.Services.AddSingleton(awsConfig);
-builder.Services.AddSingleton(mongoDbConfig);
-builder.Services.AddSingleton(s3Config);
+#endregion
 
-# endregion
+var awsConfig = builder.Configuration.GetSection(AwsSettings.SectionName).Get<AwsSettings>();
+var sqsConfig = builder.Configuration.GetSection(SqsSettings.SectionName).Get<SqsSettings>();
 
 // AWS S3 pointing to RustFS
 builder.Services.AddSingleton<IAmazonS3>(_ =>
@@ -58,8 +61,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference(options =>
     {
-        options.WithTitle("CSV Processor API")
-            .DisableAgent();
+        options.WithTitle("CSV Processor API");
+        options.DisableAgent();
     });
 }
 

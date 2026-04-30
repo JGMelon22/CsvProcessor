@@ -12,5 +12,5 @@
   "function-runtime": "dotnet10",
   "function-memory-size": 512,
   "function-timeout": 30,
-  "function-handler": "CsvProcessor.Lambda::CsvProcessor.Lambda.Function::FunctionHandler"
+  "function-handler": "CsvProcessor.Lambda::CsvProcessor.Lambda.Function_FunctionHandler_Generated::FunctionHandler"
 }

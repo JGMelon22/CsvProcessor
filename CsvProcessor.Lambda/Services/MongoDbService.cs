@@ -12,7 +12,7 @@ public class MongoDbService(IMongoClient mongoClient, IOptions<MongoDbSettings> 
         .GetDatabase(options.Value.DatabaseName)
         .GetCollection<Product>(options.Value.CollectionName);
 
-    public async Task InsertMany(IEnumerable<Product> products, CancellationToken cancellationToken = default)
+    public async Task InsertManyAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default)
     {
         await _collection.InsertManyAsync(products, cancellationToken: cancellationToken);
     }
