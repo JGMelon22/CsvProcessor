@@ -29,8 +29,7 @@ public class CsvControllersTests
     public async Task Should_ReturnOk_When_ValidCsvIsUploaded()
     {
         // Arrange
-        var bytes = Encoding.UTF8.GetBytes(
-            "Id,Name,Price,Amount,Category,CreatedAt\n1,Teclado Mecânico,350.90,15,Periféricos,2024-01-10");
+        var bytes = "Id,Name,Price,Amount,Category,CreatedAt\n1,Teclado Mecânico,350.90,15,Periféricos,2024-01-10"u8.ToArray();
         IFormFile file = new FormFile(new MemoryStream(bytes), 0, bytes.Length, "Data", "sample.csv")
         {
             Headers = new HeaderDictionary(),
@@ -53,12 +52,11 @@ public class CsvControllersTests
     public async Task Should_ReturnBadRequest_WhenFileIsNotCsv()
     {
         // Arrange
-        byte[] bytes = Encoding.UTF8.GetBytes(
-            """
-            {
-                "ping": "pong"
-            }
-            """);
+        byte[] bytes = """
+                       {
+                           "ping": "pong"
+                       }
+                       """u8.ToArray();
         IFormFile file = new FormFile(new MemoryStream(bytes), 0, bytes.Length, "Data", "sample.json")
         {
             Headers = new HeaderDictionary(),
