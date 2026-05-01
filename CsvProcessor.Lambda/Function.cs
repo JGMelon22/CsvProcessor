@@ -36,28 +36,39 @@ public class Function
     {
         foreach (var message in sqsEvent.Records)
         {
-            context.Logger.LogInformation("Processing message {MessageId}", message.MessageId);
-
-            var payload = JsonSerializer.Deserialize<CsvUploadPayload>(message.Body);
-
-            if (payload is null)
+            try
             {
-                context.Logger.LogError("Invalid payload at message {MessageId}", message.MessageId);
-                continue;
+                context.Logger.LogInformation("Processing message {MessageId}", message.MessageId);
+
+                var payload = JsonSerializer.Deserialize<CsvUploadPayload>(message.Body);
+
+                if (payload is null)
+                {
+                    context.Logger.LogError("Invalid payload at message {MessageId}", message.MessageId);
+                    continue;
+                }
+
+                // Download CSC from RustFS
+                Stream stream = await _s3DownloadService.DownloadAsync(payload.S3Key);
+
+                // Read and process registers using CsvHelper
+                IEnumerable<Product> products = _csvReaderService.ReadRecords(stream);
+
+                // Saves at MongoDb
+                await _mongoDbService.InsertManyAsync(products);
+
+                context.Logger.LogInformation("Message {MessageId} processed. {Total} of registers saved.",
+                    message.MessageId,
+                    payload.TotalRecords);
             }
+            catch (Exception ex)
+            {
+                context.Logger.LogError("Error processing message {MessageId}",
+                    message.MessageId,
+                    ex.Message);
 
-            // Download CSC from RustFS
-            Stream stream = await _s3DownloadService.DownloadAsync(payload.S3Key);
-
-            // Read and process registers using CsvHelper
-            IEnumerable<Product> products = _csvReaderService.ReadRecords(stream);
-
-            // Saves at MongoDb
-            await _mongoDbService.InsertManyAsync(products);
-
-            context.Logger.LogInformation("Message {MessageId} processed. {Total} of registers saved.",
-                message.MessageId,
-                payload.TotalRecords);
+                throw;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using CsvProcessor.Api.Extensions;
+using CsvProcessor.Api.Middlewares;
 using CsvProcessor.Shared.Settings;
 using Scalar.AspNetCore;
 
@@ -29,6 +30,9 @@ builder.Services.AddSqsService();
 
 builder.Services.AddServices();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,5 +51,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseExceptionHandler();
 
 app.Run();
