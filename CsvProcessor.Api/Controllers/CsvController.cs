@@ -12,7 +12,7 @@ public class CsvController(
     ICsvReaderService csvReaderService) : ControllerBase
 {
     [HttpPost("upload")]
-    public async Task<IActionResult> Upload(IFormFile file, CancellationToken cancellationToken)
+    public async Task<IActionResult> Upload(IFormFile? file, CancellationToken cancellationToken)
     {
         if (file is null || file.Length == 0)
             return BadRequest("No file was sent.");
