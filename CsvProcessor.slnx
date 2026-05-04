@@ -6,7 +6,7 @@
   </Folder>
   <Folder Name="/tests/" />
   <Folder Name="/tests/UnitTests/">
-    <Project Path="CsvProcessos.Api.UnitTests/CsvProcessos.Api.UnitTests.csproj" />
-    <Project Path="CsvProcessos.Lambda.UnitTests/CsvProcessos.Lambda.UnitTests.csproj" />
+    <Project Path="CsvProcessor.Api.UnitTests\CsvProcessor.Api.UnitTests.csproj" />
+    <Project Path="CsvProcessor.Lambda.UnitTests\CsvProcessor.Lambda.UnitTests.csproj" />
   </Folder>
 </Solution>
